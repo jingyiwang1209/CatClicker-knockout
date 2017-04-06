@@ -43,11 +43,12 @@
               <button class='btn' data-bind='click: $parent.openAdmin'>Admin</button>
 
                <div class='admin' style='display: none'>
+               <!-- better to add sumbmit in form for key press too -->
                 <form data-bind='submit:$parent.updateInfo'>
                     <label>name: <input data-bind='value:name ' type='text'></label>
                     <label>url: <input data-bind='value: url' type='text'></label>
                     <label>#clicks: <input data-bind='value:click' type='text'></label>
-                    <button class='cancel' data-bind='click:$parent.closeAdmin'>Cancel</button>
+                    <button class='cancel' data-bind='click: $parent.closeAdmin'>Cancel</button>
                     <button class='save' type='submit'>Save</button>
                 </form>
               </div>
