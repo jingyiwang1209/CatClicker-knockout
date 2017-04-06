@@ -31,7 +31,7 @@
     <body>
     <div class='zone'>
        <div class='left'><ul data-bind='foreach:catList'>
-         <li><img data-bind='attr:{src:$data.src, alt:$data.name},click:$parent.currentCat'></li>
+         <li><img data-bind='attr:{src:$data.src, alt:$data.name},click:$parent.currentCat,$parent.closeAdmin'></li>
        </ul></div>
        <div class='right'>
            <div class='showCat' data-bind='with:currentCat'>
@@ -40,22 +40,25 @@
              <img data-bind='attr:{src:src,alt:name},click: $parent.incrementCounter'>
              <p class='times' data-bind='text:click'></p>
 
-              <!-- <button class='btn'>Admin</button>
-               <div class='admin' style="visibility: hidden">
-                <form>
-                    <label>name: <input class='name' type='text'></label>
-                    <label>url: <input class='url' type='text'></label>
-                    <label>#clicks: <input class='click' type='text'></label>
-                    <button class='cancel'>Cancel</button>
-                    <button class='save'>Save</button>
+              <button class='btn' data-bind='click: $parent.openAdmin'>Admin</button>
+
+               <div class='admin' style='display: none'>
+                <form data-bind='submit:$parent.updateInfo'>
+                    <label>name: <input data-bind='value:name ' type='text'></label>
+                    <label>url: <input data-bind='value: url' type='text'></label>
+                    <label>#clicks: <input data-bind='value:click' type='text'></label>
+                    <button class='cancel' data-bind='click:$parent.closeAdmin'>Cancel</button>
+                    <button class='save' type='submit'>Save</button>
                 </form>
-              </div> -->
+              </div>
 
 
            </div>
        </div>
     </div>
+
          <script src='knockout-3.4.2.js'></script>
-        <script src='main.js'></script>
+         <script src='main.js'></script>
+
     </body>
 </html>

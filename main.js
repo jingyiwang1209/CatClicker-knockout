@@ -6,7 +6,7 @@ var initCatList=[
 
 var Cat=function (data){
   var self=this;
-  self.name=data.name;
+  self.name=ko.observable(data.name);
   self.click=ko.observable(data.count);
   self.src=ko.observable(data.src);
   self.url=ko.observable(data.url);
@@ -32,7 +32,7 @@ var viewModel=function(){
   this.catList=ko.observableArray([]);
 
   initCatList.forEach(function(catEle){
-    self.catList.puxsh(new Cat(catEle));
+    self.catList.push(new Cat(catEle));
   });
 
   self.currentCat=ko.observable(this.catList()[0]);
@@ -41,7 +41,30 @@ var viewModel=function(){
       this.click(this.click()+1);
   };
 
+  this.updateInfo=function(){
+    var currentCat=this.name();
+    var currentUrl=this.url();
+    var currentClick=this.click();
+    this.name(currentCat);
+    this.url(currentUrl);
+    this.click(currentClick);
+  };
+
+  this.openAdmin=function(){
+    var admin=document.querySelector('.admin');
+    admin.style.display='block';
+  };
+
+  this.closeAdmin=function(){
+    var admin=document.querySelector('.admin');
+    admin.style.display='none';
+
+  };
+
 
 };
 
 ko.applyBindings(new viewModel());
+
+
+
